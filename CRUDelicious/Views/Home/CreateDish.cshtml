@@ -1,0 +1,44 @@
+@model Dish
+
+<div class="container text-center">
+    <h3>Add a new Dish!</h3>
+    <a asp-action="Index">Home</a>
+    <hr>
+    <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+    <form asp-action="CreateDish" asp-controller="Home" method="POST">
+        <div class="form-group">
+            <label for="Chef">Chef's Name: </label>
+            <input class=”form-control” asp-for="Chef">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Chef"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="Name">Dish Name: </label>
+            <input class=”form-control” asp-for="Name">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Name"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="Calories"># of Calories: </label>
+            <input class=”form-control” asp-for="Calories">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Calories"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="Tastiness">Tastiness: </label>
+        <select asp-for="Tastiness" id="">
+            <option disabled selected value="">#</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Tastiness"></span></small>
+        </div>
+        <div class="form-group">
+        <label for="Description"></label>
+        <textarea asp-for="Description" id="" cols="30" rows="10" placeholder="Description"></textarea>
+        <small id="errors" class="form-text text-danger"><span asp-validation-for="Description"></span></small>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Dish</button>
+    </form>
+    </div>
+</div>
