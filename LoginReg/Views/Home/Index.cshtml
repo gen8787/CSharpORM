@@ -1,0 +1,15 @@
+﻿@model User
+
+<div class="container text-center">
+    <h3>Welcome, register below.</h3>
+    <a asp-action="Login">Login</a>
+    <hr>
+    <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+        <form asp-action="Register" asp-controller="Home" method="POST">
+            <div class="form-group">
+                <label for="FirstName">First Name: </label>
+                <input class=”form-control” asp-for="FirstName">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="FirstName"></span></small>
+            </div>
+        </form>
+</div>
