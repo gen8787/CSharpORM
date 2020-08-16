@@ -13,6 +13,8 @@ namespace SportsORM.Models
         public string Sport {get;set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
+
+        //Nav Prop
         public List<Team> Teams {get;set;}
     }
 }

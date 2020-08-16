@@ -10,7 +10,11 @@ namespace SportsORM.Models
         public int TeamId {get;set;}
         public string Location {get;set;}
         public string TeamName {get;set;}
+
+        //Foreign Key
         public int LeagueId {get;set;}
+
+        //Nav Props
         public League CurrLeague {get;set;}
         public List<Player> CurrentPlayers {get;set;}
         public List<PlayerTeam> AllPlayers {get;set;}

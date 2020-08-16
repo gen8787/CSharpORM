@@ -1,0 +1,35 @@
+﻿@model List<Chef>
+
+<div class="container text-center">
+    <div class="text-center d-inline-flex mb-5">
+        <h3>Chefs</h3>
+        <h3 class="mx-3">|</h3>
+        <h3><a asp-action="AllDishes">Dishes</a></h3>
+    </div>
+    <p>Check out our Master Chefs!</p>
+    <small><a asp-action="AddChef">Add Chef</a></small>
+<hr>
+<div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col"># of Dishes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Chef c in Model)
+                {
+                    int age = DateTime.Now.Year - c.DOB.Year;
+
+                    <tr>
+                        <td>@c.FirstName @c.LastName</td>
+                        <td>@age</td>
+                        <td>@c.CreatedDishes.Count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
+</div>

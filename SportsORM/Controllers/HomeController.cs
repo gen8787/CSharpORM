@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SportsORM.Models;
 
 namespace SportsORM.Controllers
@@ -97,7 +98,30 @@ namespace SportsORM.Controllers
         [HttpGet("level_2")]
         public IActionResult Level2()
         {
-            return View();
+//1...all teams in the Atlantic Soccer Conference
+            List<League> teamsInAtSocConf = _context.Leagues
+            .Include(team => team.Teams)
+            .Where(x => x.Name.Contains("Atlantic Soccor Conference"))
+            .ToList();
+            ViewBag.teamsInAtSocConf = teamsInAtSocConf;
+//2...all (current) players on the Boston Penguins (Hint: Boston is the Location, Penguins is the TeamName)
+
+//3...all (current) players in the International Collegiate Baseball Conference
+
+//4...all (current) players in the American Conference of Amateur Football with last name "Lopez"
+
+//5...all football players
+
+//6...all teams with a (current) player named "Sophia"
+
+//7...all leagues with a (current) player named "Sophia"
+
+//8...everyone with the last name "Flores" who DOESN'T (currently) play for the Washington Roughriders
+
+
+
+
+            return View("Level2");
         }
 
         [HttpGet("level_3")]

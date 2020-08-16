@@ -1,15 +1,39 @@
+@model League
+
+<style>li{color:red}</style>
 <div class="card">
     <div class="card-header bg-dark text-light">Level 2</div>
     <div class="card-body">
         <p>Using the SportsORM, complete all the following queries and show their results on Level2.cshtml.</p>
         <ol>
+@* 1 *@
             <li>...all teams in the Atlantic Soccer Conference</li>
+            <table class="table table-striped">
+                <tr>
+                    <th>League Name</th>
+                    <th>Team Name</th>
+                </tr>
+                @foreach(var l in ViewBag.teamsInAtSocConf)
+                {
+                    <tr>
+                        <td>@l.Name </td>
+                        @* <td>@l.Team</td> *@
+                    </tr>
+                }
+            </table>
+@* 2 *@
             <li>...all (current) players on the Boston Penguins (Hint: Boston is the Location, Penguins is the TeamName)</li>
+@* 3 *@
             <li>...all (current) players in the International Collegiate Baseball Conference</li>
+@* 4 *@
             <li>...all (current) players in the American Conference of Amateur Football with last name "Lopez"</li>
+@* 5 *@
             <li>...all football players</li>
+@* 6 *@
             <li>...all teams with a (current) player named "Sophia"</li>
+@* 7 *@
             <li>...all leagues with a (current) player named "Sophia"</li>
+@* 8 *@
             <li>...everyone with the last name "Flores" who DOESN'T (currently) play for the Washington Roughriders</li>
         </ol>
     </div>
