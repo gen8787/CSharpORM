@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LoginReg.Models
 {
-    public class User
-    {
+        public class User
+        {
 // Primary Key
         [Key]
         public int UserId { get; set; }
@@ -44,5 +44,5 @@ namespace LoginReg.Models
 // Created At / Updated At
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
-    }
+        }
 }

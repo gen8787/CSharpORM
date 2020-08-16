@@ -1,3 +1,7 @@
+@model User
+
+<a asp-action="Logout">Logout</a>
 <div class="container text-center">
     <h1 class="text-success">S U C C E S S</h1>
+    <p>Welcome, @Context.Session.GetString("userFirstName")!</p>
 </div>
