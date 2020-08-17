@@ -43,7 +43,7 @@ namespace BankAccounts.Controllers
                 db.SaveChanges();
                 HttpContext.Session.SetInt32("userId", newUser.UserId);
                 HttpContext.Session.SetString("userFirstName", newUser.FirstName);
-                return RedirectToAction("Success"); 
+                return RedirectToAction("Account", newUser.UserId); 
             }
             return View("Index", newUser);
         }
@@ -74,19 +74,59 @@ namespace BankAccounts.Controllers
                 }
                 HttpContext.Session.SetInt32("userId", userInDb.UserId);
                 HttpContext.Session.SetString("userFirstName", userInDb.FirstName);
-                return RedirectToAction("Success"); 
+                return RedirectToAction("Account", userInDb.UserId); 
             }
             return View("Login");
         }
-// Success
-        [HttpGet("success")]
-        public IActionResult Success()
+// Account Page
+        [HttpGet("account")]
+        public IActionResult Account()
         {
             if(HttpContext.Session.GetInt32("userId") == null)
             {
                 return RedirectToAction("Index");
             }
-            return View("Success");
+            User currentUser = db.Users.FirstOrDefault(u => u.UserId == HttpContext.Session.GetInt32("userId"));
+            List<Transaction> allTransactions = db.Transactions
+                .Where(t => t.UserId == currentUser.UserId)
+                .OrderByDescending(t => t.CreatedAt)
+                .ToList();
+                
+            ViewBag.allTransactions = allTransactions;
+
+            decimal? balance = db.Transactions
+                .Where(t => t.UserId == currentUser.UserId)
+                .Sum(t => t.Amount);
+            if (balance == null)
+            {
+                balance = (decimal?)0.00;
+            }
+            ViewBag.Balance = Math.Round((decimal)balance,2);
+            string Balance = ViewBag.Balance.ToString();
+            HttpContext.Session.SetString("userBal", Balance);
+            return View("Account");
+        }
+// Create Transaction
+        [HttpPost("create-transaction")]
+        public IActionResult CreateTransaction(Transaction newTransaction)
+        {
+            if(ModelState.IsValid)
+            {
+                string Balance = HttpContext.Session.GetString("userBal");
+                decimal decBalance = Convert.ToDecimal(Balance);
+                if (newTransaction.Amount < 0)
+                {
+                    if (decBalance + newTransaction.Amount <= 0)
+                    {
+                        return RedirectToAction("Account");
+                    }
+                }
+                newTransaction.UserId = (int)HttpContext.Session.GetInt32("userId");
+                db.Transactions.Add(newTransaction);
+                db.SaveChanges();
+                return RedirectToAction("Account"); 
+            }
+            return View("CreateTransaction", newTransaction);
         }
 // Logout
         [HttpGet("logout")]

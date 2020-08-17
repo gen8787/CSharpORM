@@ -57,3 +57,5 @@
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/obj/Debug/netcoreapp3.1/BankAccounts.dll
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/obj/Debug/netcoreapp3.1/BankAccounts.pdb
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/obj/Debug/netcoreapp3.1/BankAccounts.genruntimeconfig.cache
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/obj/Debug/netcoreapp3.1/Razor/Views/Home/Login.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/obj/Debug/netcoreapp3.1/Razor/Views/Home/Account.cshtml.g.cs

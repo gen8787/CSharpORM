@@ -1,0 +1,46 @@
+@model Transaction
+
+<div class="header">
+    <h3>Welcome, @Context.Session.GetString("userFirstName")!</h3>
+    <a asp-action="Logout">Logout</a>
+    <p>Current Balance: $@ViewBag.Balance</p>
+</div>
+<div class="container">
+    <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+    <form asp-action="CreateTransaction" asp-controller="Home" method="POST">
+        <div class="form-group">
+            <label for="Amount">Deposit / Withdraw Amount $</label>
+            <input class=”form-control” asp-for="Amount">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Amount"></span></small>
+        </div>
+        <button class="btn btn-primary text-center" type="submit">Complete</button>
+    </form>
+    </div>
+<div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Transaction t in ViewBag.allTransactions)
+                {
+                    if (t.Amount > 0)
+                    {
+                        <tr>
+                            <td class="text-success">@Math.Round(t.Amount, 2)</td>
+                            <td>@t.CreatedAt</td>
+                        </tr>
+                    } else
+                    {
+                        <tr>
+                            <td class="text-danger">@Math.Round(t.Amount, 2)</td>
+                            <td>@t.CreatedAt</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+</div>

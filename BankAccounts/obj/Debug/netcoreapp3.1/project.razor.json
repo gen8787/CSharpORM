@@ -14201,6 +14201,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/Views/Home/Account.cshtml",
+      "TargetPath": "Views\\Home\\Account.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BankAccounts/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
