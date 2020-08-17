@@ -1,0 +1,22 @@
+@model LoginUser
+
+<div class="container text-center">
+    <h3>Welcome, login below.</h3>
+    <a asp-action="Index">Register</a>
+    <hr>
+    <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+        <form asp-action="ProcessLogin" asp-controller="Home" method="POST">
+        <div class="form-group">
+            <label for="LoginEmail">Email: </label>
+            <input class=”form-control” asp-for="LoginEmail">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="LoginEmail"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="LoginPassword">Password: </label>
+            <input class=”form-control” asp-for="LoginPassword">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="LoginPassword"></span></small>
+        </div>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>
