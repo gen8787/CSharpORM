@@ -130,7 +130,7 @@ namespace ProductsAndCategories.Controllers
             db.SaveChanges();
             return RedirectToAction("ViewCategory", catId);
         }
-//<~~ E N D   O F   M A I N   V I E W S ~~> //
+
         public IActionResult Privacy()
         {
             return View();
