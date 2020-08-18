@@ -14196,6 +14196,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/Views/Home/AllCategories.cshtml",
+      "TargetPath": "Views\\Home\\AllCategories.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/Views/Shared/_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -14208,6 +14213,21 @@
     {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/Views/Home/Category.cshtml",
+      "TargetPath": "Views\\Home\\Category.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/Views/Home/AllProducts.cshtml",
+      "TargetPath": "Views\\Home\\AllProducts.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/Views/Home/Product.cshtml",
+      "TargetPath": "Views\\Home\\Product.cshtml",
       "FileKind": "mvc"
     },
     {

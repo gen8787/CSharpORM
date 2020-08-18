@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductsAndCategories.Models
 {
-    public class Category
-    {
+        public class Category
+        {
 // Primary Key
         [Key]
         public int CategoryId { get; set; }
@@ -20,5 +20,5 @@ namespace ProductsAndCategories.Models
 
 // Nav Prop
         public List<Relationship> RelatedProducts { get; set; }
-    }
+        }
 }

@@ -1,0 +1,26 @@
+@model Category
+
+<div class="container text-center">
+    <div class="text-center d-inline-flex mb-5">
+        <h3><a asp-action="AllProducts">Products</a></h3>
+        <h3 class="mx-3">|</h3>
+        <h3>Categories</h3>
+    </div>
+    <hr>
+    <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+    <form asp-action="CreateCategory" asp-controller="Home" method="POST">
+        <div class="form-group">
+            <label for="Name">Category Name: </label>
+            <input class=”form-control” asp-for="Name">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Name"></span></small>
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    </div>
+    @foreach (Category cat in ViewBag.AllCategories)
+    {
+        <p>
+        <a asp-action="ViewCategory" asp-route-catId="@cat.CategoryId">@cat.Name</a>
+        </p>
+    }
+</div>

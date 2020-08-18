@@ -1,0 +1,30 @@
+@model Product
+
+<div class="container">
+    <h2>@Model.Name</h2>
+    <hr>
+    <h3>Categories</h3>
+    <ul>
+        @foreach (var rel in Model.RelatedCategories)
+        {
+            <li>@rel.Category.Name</li>
+        }
+        
+    </ul>
+    <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+    <form asp-action="AddCatToProd" asp-controller="Home" asp-route-prodId="@Model.ProductId" method="POST">
+        <div class="form-group">
+            <label for="catId">Add Category: </label>
+            <select name="catId">
+                <option disabled selected value="">#</option>
+                @foreach (Category cat in @ViewBag.Categories)
+                {
+                    <option value="@cat.CategoryId">@cat.Name</option>
+                }
+                
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    </div>
+</div>

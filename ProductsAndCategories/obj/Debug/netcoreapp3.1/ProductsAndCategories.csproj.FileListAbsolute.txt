@@ -57,3 +57,7 @@
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/ProductsAndCategories.dll
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/ProductsAndCategories.pdb
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/ProductsAndCategories.genruntimeconfig.cache
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/Razor/Views/Home/AllCategories.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/Razor/Views/Home/AllProducts.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/Razor/Views/Home/Product.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/ProductsAndCategories/obj/Debug/netcoreapp3.1/Razor/Views/Home/Category.cshtml.g.cs

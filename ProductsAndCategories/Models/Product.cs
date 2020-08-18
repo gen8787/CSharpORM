@@ -4,17 +4,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductsAndCategories.Models
 {
-    public class Product
-    {
+        public class Product
+        {
 // Primary Key
         [Key]
         public int ProductId { get; set; }
+
 // Name
         [Required]
         public string Name { get; set; }
+
 // Description
         [MinLength(10)]
         public string Description { get; set; }
+
 // Price
         [Required]
         public decimal Price { get; set; }
@@ -25,5 +28,5 @@ namespace ProductsAndCategories.Models
 
 // Nav Prop
         public List<Relationship> RelatedCategories { get; set; }
-    }
+        }
 }
