@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WeddingPlanner.Models
 {
-    public class Wedding
-    {
+        public class Wedding
+        {
 // Primary Key
         [Key]
         public int WeddingId { get; set; }
@@ -23,7 +23,6 @@ namespace WeddingPlanner.Models
         public string WedderTwo { get; set; }
 
 // Date
-
         [Required(ErrorMessage = "Please enter your wedding date.")]
         public DateTime Date { get; set; }
 
@@ -36,6 +35,6 @@ namespace WeddingPlanner.Models
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
 // Nav Prop - List<Relationship> (One wedding can have many users, so a list of users.)
-        public List<Relationship> RelatedWeddings { get; set; }
-    }
+        public List<Relationship> RelatedUsers { get; set; }
+        }
 }

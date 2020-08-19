@@ -59,3 +59,6 @@
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/obj/Debug/netcoreapp3.1/WeddingPlanner.genruntimeconfig.cache
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/obj/Debug/netcoreapp3.1/Razor/Views/Home/_Login.cshtml.g.cs
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/obj/Debug/netcoreapp3.1/Razor/Views/Home/_Register.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/obj/Debug/netcoreapp3.1/Razor/Views/Home/Dashboard.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/obj/Debug/netcoreapp3.1/Razor/Views/Home/NewWedding.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/obj/Debug/netcoreapp3.1/Razor/Views/Home/Wedding.cshtml.g.cs

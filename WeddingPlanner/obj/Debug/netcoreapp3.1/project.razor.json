@@ -14196,13 +14196,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Home/Wedding.cshtml",
+      "TargetPath": "Views\\Home\\Wedding.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Home/_Login.cshtml",
       "TargetPath": "Views\\Home\\_Login.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Home/Dashboard.cshtml",
+      "TargetPath": "Views\\Home\\Dashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Home/NewWedding.cshtml",
+      "TargetPath": "Views\\Home\\NewWedding.cshtml",
       "FileKind": "mvc"
     },
     {
