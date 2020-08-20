@@ -11,27 +11,45 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col-4">Wedding</th>
-                        <th scope="col-4">Date</th>
+                        <th scope="col-3">Wedding</th>
+                        <th scope="col-3">Date</th>
                         <th scope="col-2">Guests</th>
-                        <th scope="col-2">Action</th>
+                        <th scope="col-4">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (Wedding w in Model)
                     {
-                        <tr>
-                            <td><a asp-action="Wedding" asp-route-WeddingId="@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
-                            <td>@w.Date.ToString("MMM dd, yyyy")</td>
-                            <td>@w.RelatedUsers.Count</td>
-                            <td>@if (ViewBag.WeddingId == @w.WeddingId)
+                    <tr>
+                        <td><a asp-action="Wedding" asp-route-WeddingId="@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
+                        <td>@w.Date.ToString("MMM dd, yyyy")</td>
+                        <td>@w.RelatedUsers.Count</td>
+                            @if (w.UserId == @Context.Session.GetInt32("userId"))
                             {
-                                <p>@w.WeddingId</p>
-                            }</td>
-                            
-                        </tr>
+                                <td>
+                                    <a asp-action="Delete" asp-controller="Home" asp-route-WeddingId="@w.WeddingId">
+                                    DELETE
+                                    </a>
+                                </td>
+                            }
+                            else if (w.RelatedUsers.Any(g => g.UserId == @Context.Session.GetInt32("userId")) == false)
+                            {
+                                <td>
+                                    <a asp-action="Rsvp" asp-controller="Home" asp-route-WeddingId="@w.WeddingId">
+                                    RSVP
+                                    </a>
+                                </td>
+                            }
+                            else if (w.RelatedUsers.Any(g => g.UserId == @Context.Session.GetInt32("userId")))
+                            {
+                                <td>
+                                    <a asp-action="UnRsvp" asp-controller="Home" asp-route-WeddingId="@w.WeddingId">
+                                    Un-RSVP
+                                    </a>
+                                </td>
+                            }
+                    </tr>
                     }
-                    
                 </tbody>
             </table>
     </div>

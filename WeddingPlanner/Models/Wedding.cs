@@ -34,7 +34,11 @@ namespace WeddingPlanner.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-// Nav Prop - List<Relationship> (One wedding can have many users, so a list of users.)
+// Foreign Keys
+        public int UserId { get; set; }
+
+// Nav Prop - One wedding can be organized by only one User, but can be attended by many Users.
+        public User WeddingOrganizer { get; set; }
         public List<Relationship> RelatedUsers { get; set; }
         }
 }

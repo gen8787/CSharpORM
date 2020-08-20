@@ -9,8 +9,8 @@ using WeddingPlanner.Models;
 namespace WeddingPlanner.Migrations
 {
     [DbContext(typeof(WeddingPlannerContext))]
-    [Migration("20200818050444_DbSetup")]
-    partial class DbSetup
+    [Migration("20200819223548_DbSetupWithModelChanges")]
+    partial class DbSetupWithModelChanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,6 +94,9 @@ namespace WeddingPlanner.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("WedderOne")
                         .IsRequired()
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
@@ -105,6 +108,8 @@ namespace WeddingPlanner.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("WeddingId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Weddings");
                 });
@@ -118,8 +123,17 @@ namespace WeddingPlanner.Migrations
                         .IsRequired();
 
                     b.HasOne("WeddingPlanner.Models.Wedding", "Weddings")
-                        .WithMany("RelatedWeddings")
+                        .WithMany("RelatedUsers")
                         .HasForeignKey("WeddingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WeddingPlanner.Models.Wedding", b =>
+                {
+                    b.HasOne("WeddingPlanner.Models.User", "WeddingOrganizer")
+                        .WithMany("WeddingsOrganized")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WeddingPlanner.Migrations
 {
-    public partial class DbSetup : Migration
+    public partial class DbSetupWithModelChanges : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,11 +37,18 @@ namespace WeddingPlanner.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     Address = table.Column<string>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Weddings", x => x.WeddingId);
+                    table.ForeignKey(
+                        name: "FK_Weddings_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,6 +86,11 @@ namespace WeddingPlanner.Migrations
                 name: "IX_Relationships_WeddingId",
                 table: "Relationships",
                 column: "WeddingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Weddings_UserId",
+                table: "Weddings",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -87,10 +99,10 @@ namespace WeddingPlanner.Migrations
                 name: "Relationships");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Weddings");
 
             migrationBuilder.DropTable(
-                name: "Weddings");
+                name: "Users");
         }
     }
 }

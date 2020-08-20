@@ -6,21 +6,31 @@
     <h3>@Model.WedderOne & @Model.WedderTwo's Wedding</h3>
     <p>@Model.Date.ToString("MMM dd, yyyy")</p>
     <hr>
-    <h4>Guests:</h4>
+    <h4>VB Guests:</h4>
+    @* Using ViewBag *@
     @foreach (User u in ViewBag.usersRsvp)
     {
         <p>@u.FirstName @u.LastName</p>
     }
-
-    <form asp-action="Rsvp" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="post" class="d-inline-flex mr-5">
+    <hr>
+    <h4>Rel Guests:</h4>
+    @* Using the relationship *@
+    @foreach (var g in Model.RelatedUsers)
+    {
+        <p>@g.Users.FirstName</p>
+    }
+    <form asp-action="Rsvp" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="get" class="d-inline-flex mr-5">
         <button class="btn btn-link" type="submit">RSVP</button>
     </form>
 
-    <form asp-action="UnRsvp" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="post" class="d-inline-flex mr-5">
+    <form asp-action="UnRsvp" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="get" class="d-inline-flex mr-5">
         <button class="btn btn-link" type="submit">Un-RSVP</button>
     </form>
 
-    <form asp-action="Delete" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="post" class="d-inline-flex mr-5">
+    @if (@Context.Session.GetInt32("userId") == Model.UserId)
+    {
+        <form asp-action="Delete" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="get" class="d-inline-flex mr-5">
         <button class="btn btn-link" type="submit">Delete</button>
     </form>
+    }
 </div>

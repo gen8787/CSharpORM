@@ -131,8 +131,10 @@ namespace WeddingPlanner.Controllers
             {
                 if (newWedding.Date <= DateTime.Now)
                 {
-                    return RedirectToAction("NewWedding");
+                    ModelState.AddModelError("Date", "Wedding must be a future date.");
+                    return View("NewWedding");
                 }
+                newWedding.UserId = (int)uid;
                 db.Weddings.Add(newWedding);
                 db.SaveChanges();
                 return RedirectToAction("Dashboard"); 
@@ -156,26 +158,27 @@ namespace WeddingPlanner.Controllers
             return View("Wedding", thisWedding);
         }
     // RSVP to Wedding
-        [HttpPost("rsvp/{WeddingId}")]
+        [HttpGet("rsvp/{WeddingId}")]
         public IActionResult Rsvp(Relationship newRelationship, int WeddingId)
         {
             newRelationship.WeddingId = WeddingId;
             newRelationship.UserId = (int)uid;
             db.Relationships.Add(newRelationship);
             db.SaveChanges();
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("Wedding", WeddingId);
         }
     // Un-RSVP to Wedding
-        [HttpPost("un-rsvp/{WeddingId}")]
+        [HttpGet("un-rsvp/{WeddingId}")]
         public IActionResult UnRsvp(int WeddingId)
         {
-            Relationship RelationshipToDelete = db.Relationships.FirstOrDefault(r => r.WeddingId == WeddingId);
+            Relationship RelationshipToDelete = db.Relationships.
+            FirstOrDefault(x => x.UserId == uid && x.WeddingId ==WeddingId);
             db.Relationships.Remove(RelationshipToDelete);
             db.SaveChanges();
             return RedirectToAction("Dashboard");
         }
     // Delete Wedding -> Remove from Db
-        [HttpPost("delete/{WeddingId}")]
+        [HttpGet("delete/{WeddingId}")]
         public IActionResult Delete(int WeddingId)
         {
             Wedding WeddingToDelete = db.Weddings.FirstOrDefault(w => w.WeddingId == WeddingId);

@@ -46,7 +46,8 @@ namespace WeddingPlanner.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-// Nav Prop - List<Relationship> (One user can attend many weddings, so a list of weddings.)
+// Nav Props - One user can create & attend many weddings.
+        public List<Wedding> WeddingsOrganized { get; set; }
         public List<Relationship> RelatedWeddings { get; set; }
-    }
+        }
 }
