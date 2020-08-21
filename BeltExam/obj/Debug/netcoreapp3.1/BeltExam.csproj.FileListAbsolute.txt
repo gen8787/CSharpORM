@@ -62,3 +62,4 @@
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BeltExam/obj/Debug/netcoreapp3.1/Razor/Views/Home/Home.cshtml.g.cs
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BeltExam/obj/Debug/netcoreapp3.1/Razor/Views/Home/SignIn.cshtml.g.cs
 /Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BeltExam/obj/Debug/netcoreapp3.1/Razor/Views/Home/NewActivity.cshtml.g.cs
+/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BeltExam/obj/Debug/netcoreapp3.1/Razor/Views/Home/AnActivity.cshtml.g.cs

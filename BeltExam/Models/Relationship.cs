@@ -10,7 +10,7 @@ namespace BeltExam.Models
 
 // Foreign Keys
         public int UserId { get; set; }
-        public int ActivityId { get; set; }
+        public int AnActivityId { get; set; }
 
 // Nav Props
         public User Users { get; set; }

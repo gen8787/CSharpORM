@@ -139,6 +139,52 @@ namespace BeltExam.Controllers
             }
             return View("NewActivity", newAnActivity);
         }
+    // View Activity Details Page
+        [HttpGet("activity/{AnActivityId}")]
+        public IActionResult AnActivity(int AnActivityId)
+        {
+            AnActivity thisAnActivity = db.AnActivities
+                .Include(x => x.AnActivityCreator)
+                .Include(p => p.RelatedParticipants)
+                .ThenInclude(rel => rel.Users)
+                .FirstOrDefault(a => a.AnActivityId == AnActivityId);
+
+            // List<User> usersParticipating = db.Users
+            //     .Where(p => p.RelatedAnActivities.Any(a => a.AnActivityId == AnActivityId))
+            //     .ToList();
+            // ViewBag.usersParticipating = usersParticipating;
+
+            return View("AnActivity", thisAnActivity);
+        }
+    // Join Activity -> Add Relationship
+        [HttpGet("join/{AnActivityId}")]
+        public IActionResult Join(Relationship newRelationship, int AnActivityId)
+        {
+            newRelationship.AnActivityId = AnActivityId;
+            newRelationship.UserId = (int)uid;
+            db.Relationships.Add(newRelationship);
+            db.SaveChanges();
+            return RedirectToAction("Home");
+        }
+    // Leave Activity -> Remove Relationship
+        [HttpGet("leave/{AnActivityId}")]
+        public IActionResult Leave(int AnActivityId)
+        {
+            Relationship RelationshipToDelete = db.Relationships.
+            FirstOrDefault(r => r.UserId == uid && r.AnActivityId == AnActivityId);
+            db.Relationships.Remove(RelationshipToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Home");
+        }
+    // Delete Activity -> Remove from Db
+        [HttpGet("delete/{AnActivityId}")]
+        public IActionResult Delete(int AnActivityId)
+        {
+            AnActivity ActivityToDelete = db.AnActivities.FirstOrDefault(a => a.AnActivityId == AnActivityId);
+            db.AnActivities.Remove(ActivityToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Home");
+        }
     // Logout -> Clear Session
         [HttpGet("logout")]
         public IActionResult Logout()

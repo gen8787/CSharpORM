@@ -65,10 +65,7 @@ namespace BeltExam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ActivityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AnActivitiesAnActivityId")
+                    b.Property<int>("AnActivityId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -76,7 +73,7 @@ namespace BeltExam.Migrations
 
                     b.HasKey("RelationshipId");
 
-                    b.HasIndex("AnActivitiesAnActivityId");
+                    b.HasIndex("AnActivityId");
 
                     b.HasIndex("UserId");
 
@@ -131,7 +128,9 @@ namespace BeltExam.Migrations
                 {
                     b.HasOne("BeltExam.Models.AnActivity", "AnActivities")
                         .WithMany("RelatedParticipants")
-                        .HasForeignKey("AnActivitiesAnActivityId");
+                        .HasForeignKey("AnActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BeltExam.Models.User", "Users")
                         .WithMany("RelatedSomething")

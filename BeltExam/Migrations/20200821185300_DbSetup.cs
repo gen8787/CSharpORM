@@ -60,18 +60,17 @@ namespace BeltExam.Migrations
                     RelationshipId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
-                    ActivityId = table.Column<int>(nullable: false),
-                    AnActivitiesAnActivityId = table.Column<int>(nullable: true)
+                    AnActivityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Relationships", x => x.RelationshipId);
                     table.ForeignKey(
-                        name: "FK_Relationships_AnActivities_AnActivitiesAnActivityId",
-                        column: x => x.AnActivitiesAnActivityId,
+                        name: "FK_Relationships_AnActivities_AnActivityId",
+                        column: x => x.AnActivityId,
                         principalTable: "AnActivities",
                         principalColumn: "AnActivityId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Relationships_Users_UserId",
                         column: x => x.UserId,
@@ -86,9 +85,9 @@ namespace BeltExam.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Relationships_AnActivitiesAnActivityId",
+                name: "IX_Relationships_AnActivityId",
                 table: "Relationships",
-                column: "AnActivitiesAnActivityId");
+                column: "AnActivityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Relationships_UserId",

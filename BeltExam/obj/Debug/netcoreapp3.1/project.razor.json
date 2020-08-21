@@ -14417,6 +14417,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BeltExam/Views/Home/AnActivity.cshtml",
+      "TargetPath": "Views\\Home\\AnActivity.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/BeltExam/Views/Home/NewActivity.cshtml",
       "TargetPath": "Views\\Home\\NewActivity.cshtml",
       "FileKind": "mvc"

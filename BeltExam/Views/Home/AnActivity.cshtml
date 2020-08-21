@@ -1,0 +1,41 @@
+@model AnActivity
+
+<div class="container">
+    <h3>@Model.Title</h3>
+    <h4>Event Coordinator: @Model.AnActivityCreator.FirstName</h4>
+    <p></p>
+    <h4>Description:</h4>
+    <p>@Model.Description</p>
+    <p></p>
+    <h3>Participants:</h3>
+    <ul>
+    @foreach (var p in Model.RelatedParticipants)
+    {
+        <li>@p.Users.FirstName</li>
+    }
+    </ul>
+    @if (@Model.UserId == @Context.Session.GetInt32("userId"))
+    {
+        <td>
+            <a asp-action="Delete" asp-controller="Home" asp-route-AnActivityId="@Model.AnActivityId">
+            Delete
+            </a>
+        </td>
+    }
+    else if (Model.RelatedParticipants.Any(p => p.UserId == @Context.Session.GetInt32("userId")) == false)
+    {
+        <td>
+            <a asp-action="Join" asp-controller="Home" asp-route-AnActivityId="@Model.AnActivityId">
+            Join
+            </a>
+        </td>
+    }
+    else if (Model.RelatedParticipants.Any(p => p.UserId == @Context.Session.GetInt32("userId")))
+    {
+        <td>
+            <a asp-action="Leave" asp-controller="Home" asp-route-AnActivityId="@Model.AnActivityId">
+            Leave
+            </a>
+        </td>
+    }
+</div>

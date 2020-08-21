@@ -22,7 +22,7 @@
                     @foreach (AnActivity a in Model)
                     {
                     <tr>
-                        <td><a asp-action="Details" asp-route-AnActivityId="@a.AnActivityId">@a.Title</a></td>
+                        <td><a asp-action="AnActivity" asp-route-AnActivityId="@a.AnActivityId">@a.Title</a></td>
                         <td>@a.Date.ToString("MM/dd") @@ @a.Time.ToString("hh:mm tt")</td>
                         <td>@a.DurationLength @a.DurationHrsMins</td>
                         <td>@a.AnActivityCreator.FirstName</td>

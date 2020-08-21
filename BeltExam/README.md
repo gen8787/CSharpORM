@@ -7,15 +7,15 @@ Login and Registration with Validations
     [x] (Login) Valid Email and Password
 Dashboard
     [x] Activities should be displayed in order of date/time with the most recent at the top.
-    [] Ability to join or leave an activity.
-    [] Ability to delete an activity if the logged user created it.
-    [] Activity name redirects to the Activity page.
+    [x] Ability to join or leave an activity.
+    [x] Ability to delete an activity if the logged user created it.
+    [x] Activity name redirects to the Activity page.
     [x] Add New Activity button redirects to New Activity page.
 Activity Details
-    [] Ability to Join or Leave activity based on the current logged user.
-    [] Can Delete activity if the logged user created it.
-    [] List all other users participating in the activity.
-    [] PROFICIENCY RELATED FEATURES NOT REQUIRED FOR A RED BELT
+    [x] Ability to Join or Leave activity based on the current logged user.
+    [x] Can Delete activity if the logged user created it.
+    [x] List all other users participating in the activity.
+    [x] PROFICIENCY RELATED FEATURES NOT REQUIRED FOR A RED BELT
 New Activity
     [x] Activity Date must be in the future
     [x] Title and description are required fields

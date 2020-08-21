@@ -14,21 +14,25 @@
                 <small id="errors" class="form-text text-danger"><span asp-validation-for="Title"></span></small>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="Date">Date: </label>
                 <input class="form-control" asp-for="Date">
                 <small id="errors" class="form-text text-danger"><span asp-validation-for="Date"></span></small>
             </div>
+
             <div class="form-group">
                 <label for="Time">Time: </label>
                 <input class="form-control" asp-for="Time">
                 <small id="errors" class="form-text text-danger"><span asp-validation-for="Time"></span></small>
             </div>
+
             <div class="form-group">
                 <label for="DurationLength">Duration: </label>
                 <input class="form-control" asp-for="DurationLength">
                 <small id="errors" class="form-text text-danger"><span asp-validation-for="DurationLength"></span></small>
             </div>
+
             <div class="form-group">
                 <label for="DurationHrsMins"></label>
                     <select name="DurationHrsMins">
@@ -37,6 +41,7 @@
                     </select>
                 <small id="errors" class="form-text text-danger"><span asp-validation-for="DurationHrsMins"></span></small>
             </div>
+
             <div class="form-group">
                 <label for="Description">Description: </label>
                 <textarea class="form-control" asp-for="Description"></textarea>
