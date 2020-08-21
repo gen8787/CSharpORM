@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeddingPlanner.Models
 {
-    public class User
-    {
+        public class User
+        {
 // Primary Key
         [Key]
         public int UserId { get; set; }

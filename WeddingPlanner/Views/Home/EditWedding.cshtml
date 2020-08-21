@@ -1,0 +1,36 @@
+@model Wedding
+
+<div class="container">
+    <h3>Update Your Wedding</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md">
+        <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded diplay-inline-flex">
+            <h3 class="text-center">Login</h3>
+            <hr class="border-primary" />
+            <form asp-action="UpdateWedding" asp-controller="Home" method="POST">
+            <div class="form-group">
+                <label for="WedderOne">Wedder One: </label>
+                <input class="form-control" asp-for="WedderOne">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="WedderOne"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="WedderTwo">Wedder Two: </label>
+                <input class="form-control" asp-for="WedderTwo">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="WedderTwo"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="Date">Date: </label>
+                <input class="form-control" asp-for="Date">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="Date"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address: </label>
+                <input class="form-control" asp-for="Address">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="Address"></span></small>
+            </div>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+</div>

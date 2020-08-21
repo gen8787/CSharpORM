@@ -1,6 +1,10 @@
 @model Wedding
 
     <a asp-action="Dashboard">Dashboard</a>
+    <a asp-action="EditWedding" asp-route-WeddingId="@Model.WeddingId">Edit</a>
+    @* <form asp-action="EditWedding" asp-controller="Home" asp-route-WeddingId="@Model.WeddingId" method="post" class="d-inline-flex mr-5">
+        <button class="btn btn-link" type="submit">Edit</button>
+    </form> *@
 
 <div class="container">
     <h3>@Model.WedderOne & @Model.WedderTwo's Wedding</h3>

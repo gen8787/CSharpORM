@@ -157,6 +157,32 @@ namespace WeddingPlanner.Controllers
 
             return View("Wedding", thisWedding);
         }
+    // Edit Wedding
+        [HttpGet("wedding/{WeddingId}/edit")]
+        public IActionResult EditWedding(int WeddingId)
+        {
+            Wedding weddingToEdit = db.Weddings
+                .FirstOrDefault(w => w.WeddingId == WeddingId);
+
+            return View("EditWedding", weddingToEdit);
+        }
+    // Update Wedding
+        [HttpPost("wedding/{WeddingId}/update")]
+        public IActionResult UpdateWedding(Wedding weddingFromForm, int WeddingId)
+        {
+            if (ModelState.IsValid)
+            {
+                Wedding weddingToUpdate = db.Weddings.FirstOrDefault(wId => wId.WeddingId == WeddingId);
+                weddingToUpdate.WedderOne = weddingFromForm.WedderOne;
+                weddingToUpdate.WedderTwo = weddingFromForm.WedderTwo;
+                weddingToUpdate.Date = weddingFromForm.Date;
+                weddingToUpdate.Address = weddingFromForm.Address;
+                weddingToUpdate.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return RedirectToAction("Wedding", WeddingId);
+            }
+            return View("EditWedding", weddingFromForm);
+        }
     // RSVP to Wedding
         [HttpGet("rsvp/{WeddingId}")]
         public IActionResult Rsvp(Relationship newRelationship, int WeddingId)

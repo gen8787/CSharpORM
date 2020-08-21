@@ -1,0 +1,49 @@
+@model AnActivity
+
+<div class="container">
+    <h3>Create an Activity</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-10">
+        <div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded">
+            <form asp-action="CreateActivity" asp-controller="Home" method="POST">
+            <div class="form-group row">
+                <label for="Title" class="col-2">Title:</label>
+                <div class="col-10">
+                <input class="form-control" asp-for="Title">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="Title"></span></small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Date">Date: </label>
+                <input class="form-control" asp-for="Date">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="Date"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="Time">Time: </label>
+                <input class="form-control" asp-for="Time">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="Time"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="DurationLength">Duration: </label>
+                <input class="form-control" asp-for="DurationLength">
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="DurationLength"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="DurationHrsMins"></label>
+                    <select name="DurationHrsMins">
+                        <option value="Hours">Hours</option>
+                        <option value="Minutes">Minutes</option>
+                    </select>
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="DurationHrsMins"></span></small>
+            </div>
+            <div class="form-group">
+                <label for="Description">Description: </label>
+                <textarea class="form-control" asp-for="Description"></textarea>
+                <small id="errors" class="form-text text-danger"><span asp-validation-for="Description"></span></small>
+            </div>
+                <button class="btn btn-primary" type="submit">Create Activity</button>
+            </form>
+        </div>
+    </div>
+</div>

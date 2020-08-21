@@ -1,0 +1,60 @@
+@model List<AnActivity>
+
+<div class="header">
+    <h1>Dojo Activity Center</h1>
+    <h3>Welcome, @Context.Session.GetString("userFirstName")!</h3>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col-3">Activity</th>
+                        <th scope="col-2">Date & Time</th>
+                        <th scope="col-2">Duration</th>
+                        <th scope="col-2">Event Coordinator</th>
+                        <th scope="col-2">No. of Participants</th>
+                        <th scope="col-1">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (AnActivity a in Model)
+                    {
+                    <tr>
+                        <td><a asp-action="Details" asp-route-AnActivityId="@a.AnActivityId">@a.Title</a></td>
+                        <td>@a.Date.ToString("MM/dd") @@ @a.Time.ToString("hh:mm tt")</td>
+                        <td>@a.DurationLength @a.DurationHrsMins</td>
+                        <td>@a.AnActivityCreator.FirstName</td>
+                        <td>@a.RelatedParticipants.Count</td>
+                            @if (a.UserId == @Context.Session.GetInt32("userId"))
+                            {
+                                <td>
+                                    <a asp-action="Delete" asp-controller="Home" asp-route-AnActivityId="@a.AnActivityId">
+                                    Delete
+                                    </a>
+                                </td>
+                            }
+                            else if (a.RelatedParticipants.Any(p => p.UserId == @Context.Session.GetInt32("userId")) == false)
+                            {
+                                <td>
+                                    <a asp-action="Join" asp-controller="Home" asp-route-AnActivityId="@a.AnActivityId">
+                                    Join
+                                    </a>
+                                </td>
+                            }
+                            else if (a.RelatedParticipants.Any(p => p.UserId == @Context.Session.GetInt32("userId")))
+                            {
+                                <td>
+                                    <a asp-action="Leave" asp-controller="Home" asp-route-AnActivityId="@a.AnActivityId">
+                                    Leave
+                                    </a>
+                                </td>
+                            }
+                    </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+    <a asp-action="NewActivity">Add New Activity</a>
+</div>

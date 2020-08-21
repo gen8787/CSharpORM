@@ -14221,6 +14221,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Home/EditWedding.cshtml",
+      "TargetPath": "Views\\Home\\EditWedding.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/garynewmeyer/Desktop/CodingDojo/c_sharp/ORM/WeddingPlanner/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
