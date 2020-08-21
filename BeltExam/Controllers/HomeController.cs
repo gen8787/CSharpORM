@@ -107,6 +107,10 @@ namespace BeltExam.Controllers
         [HttpGet("home")]
         public IActionResult Home()
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("SignIn");
+            }
             List<AnActivity> AllActivities = db.AnActivities
                 .Include(u => u.RelatedParticipants)
                 .Include(u => u.AnActivityCreator)
@@ -119,6 +123,10 @@ namespace BeltExam.Controllers
         [HttpGet("new")]
         public IActionResult NewActivity()
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("SignIn");
+            }
             return View("NewActivity");
         }
     // Create Activity -> Add to Db
@@ -135,25 +143,23 @@ namespace BeltExam.Controllers
                 newAnActivity.UserId = (int)uid;
                 db.AnActivities.Add(newAnActivity);
                 db.SaveChanges();
-                return RedirectToAction("Home"); 
+                return RedirectToAction("AnActivity", new {AnActivityId = newAnActivity.AnActivityId});
             }
-            return View("NewActivity", newAnActivity);
+            return RedirectToAction("NewActivity", newAnActivity);
         }
     // View Activity Details Page
         [HttpGet("activity/{AnActivityId}")]
         public IActionResult AnActivity(int AnActivityId)
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("SignIn");
+            }
             AnActivity thisAnActivity = db.AnActivities
                 .Include(x => x.AnActivityCreator)
                 .Include(p => p.RelatedParticipants)
                 .ThenInclude(rel => rel.Users)
                 .FirstOrDefault(a => a.AnActivityId == AnActivityId);
-
-            // List<User> usersParticipating = db.Users
-            //     .Where(p => p.RelatedAnActivities.Any(a => a.AnActivityId == AnActivityId))
-            //     .ToList();
-            // ViewBag.usersParticipating = usersParticipating;
-
             return View("AnActivity", thisAnActivity);
         }
     // Join Activity -> Add Relationship
@@ -164,7 +170,7 @@ namespace BeltExam.Controllers
             newRelationship.UserId = (int)uid;
             db.Relationships.Add(newRelationship);
             db.SaveChanges();
-            return RedirectToAction("Home");
+            return RedirectToAction("AnActivity", AnActivityId);
         }
     // Leave Activity -> Remove Relationship
         [HttpGet("leave/{AnActivityId}")]
@@ -190,7 +196,7 @@ namespace BeltExam.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("SignIn");
         }
 //<~~ E N D   O F   M A I N   V I E W S ~~> //
         public IActionResult Privacy()
