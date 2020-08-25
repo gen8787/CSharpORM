@@ -145,7 +145,7 @@ namespace BeltExam.Controllers
                 db.SaveChanges();
                 return RedirectToAction("AnActivity", new {AnActivityId = newAnActivity.AnActivityId});
             }
-            return RedirectToAction("NewActivity", newAnActivity);
+            return View("NewActivity", newAnActivity);
         }
     // View Activity Details Page
         [HttpGet("activity/{AnActivityId}")]
