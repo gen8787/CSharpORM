@@ -1,0 +1,34 @@
+@model User
+
+<div class="form border border-primary p-1 shadow-lg p-3 mb-5 rounded diplay-inline-flex">
+    <h3 class="text-center">Register</h3>
+    <hr class="border-primary" />
+    <form asp-action="Register" asp-controller="Home" method="POST">
+        <div class="form-group">
+            <label for="FirstName">First Name: </label>
+            <input class="form-control" asp-for="FirstName">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="FirstName"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last Name: </label>
+            <input class="form-control" asp-for="LastName">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="LastName"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="Email">Email: </label>
+            <input class="form-control" asp-for="Email">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Email"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="Password">Password: </label>
+            <input class="form-control" asp-for="Password" value="password">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="Password"></span></small>
+        </div>
+        <div class="form-group">
+            <label for="PasswordConfirm">Confirm Password: </label>
+            <input class="form-control" asp-for="PasswordConfirm" value="password">
+            <small id="errors" class="form-text text-danger"><span asp-validation-for="PasswordConfirm"></span></small>
+        </div>
+    <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>

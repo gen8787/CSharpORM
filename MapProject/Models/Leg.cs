@@ -3,23 +3,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MapProject.Models
 {
-    public class Leg
-    {
+        public class Leg
+        {
 // Primary Key
         [Key]
         public int LegId { get; set; }
 
 // Distance
-        public decimal Distance { get; set; }
+        public double Distance { get; set; }
 
 // Vertical
-        public int Vertical { get; set; }
+        public double Vertical { get; set; }
 
 // Munter Rate
-        public decimal MunterRate { get; set; }
+        public double MunterRate { get; set; }
 
 // Time
-        public decimal Time { get; set; }
+        public double Time { get; set; }
 
 // Created At / Updated At
         public DateTime CreatedAt { get; set; } = DateTime.Now;
@@ -30,5 +30,5 @@ namespace MapProject.Models
 
 // Nav Props
         public User LegCreator { get; set; }
-    }
+        }
 }

@@ -1,0 +1,9 @@
+<div class="container">
+    <h3>Welcome, @Context.Session.GetString("userFirstName")!</h3>
+    <h4>Adventure awaits...</h4>
+    <hr>
+    <p>TABLE LISTING OF ALL TOURS</p>
+    <hr>
+    <a asp-action="NewTour" class="btn btn-primary">New Tour</a>
+    <a asp-controller="Leg" asp-action="TourPlanner" class="btn btn-primary">Tour Planner Page</a>
+</div>
