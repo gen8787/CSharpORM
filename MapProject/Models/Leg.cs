@@ -9,6 +9,9 @@ namespace MapProject.Models
         [Key]
         public int LegId { get; set; }
 
+// Leg #
+        public int LegNumber { get; set; }
+
 // Distance
         public double Distance { get; set; }
 
@@ -27,8 +30,10 @@ namespace MapProject.Models
 
 // Foreign Keys
         public int UserId { get; set; }
+        public int TourId { get; set; }
 
 // Nav Props
         public User LegCreator { get; set; }
+        public Tour RelatedTour { get; set; }
         }
 }

@@ -29,11 +29,17 @@ namespace MapProject.Migrations
                     b.Property<double>("Distance")
                         .HasColumnType("double");
 
+                    b.Property<int>("LegNumber")
+                        .HasColumnType("int");
+
                     b.Property<double>("MunterRate")
                         .HasColumnType("double");
 
                     b.Property<double>("Time")
                         .HasColumnType("double");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
@@ -46,6 +52,8 @@ namespace MapProject.Migrations
 
                     b.HasKey("LegId");
 
+                    b.HasIndex("TourId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Legs");
@@ -57,15 +65,19 @@ namespace MapProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("LegId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("TourName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("TourId");
-
-                    b.HasIndex("LegId");
 
                     b.HasIndex("UserId");
 
@@ -109,6 +121,12 @@ namespace MapProject.Migrations
 
             modelBuilder.Entity("MapProject.Models.Leg", b =>
                 {
+                    b.HasOne("MapProject.Models.Tour", "RelatedTour")
+                        .WithMany("Legs")
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MapProject.Models.User", "LegCreator")
                         .WithMany("RelatedLegs")
                         .HasForeignKey("UserId")
@@ -118,13 +136,7 @@ namespace MapProject.Migrations
 
             modelBuilder.Entity("MapProject.Models.Tour", b =>
                 {
-                    b.HasOne("MapProject.Models.Leg", "Legs")
-                        .WithMany()
-                        .HasForeignKey("LegId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MapProject.Models.User", "Users")
+                    b.HasOne("MapProject.Models.User", "TourPlanner")
                         .WithMany("RelatedTours")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

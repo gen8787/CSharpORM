@@ -8,7 +8,8 @@ namespace MapProject.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Leg> Legs { get; set; }
         public DbSet<Tour> Tours { get; set; }
-        
+
+        // public DbSet<Plan> Plans { get; set; }
     }
 }
 // Migrations

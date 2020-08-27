@@ -27,48 +27,19 @@ namespace MapProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Legs",
+                name: "Tours",
                 columns: table => new
                 {
-                    LegId = table.Column<int>(nullable: false)
+                    TourId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Distance = table.Column<double>(nullable: false),
-                    Vertical = table.Column<double>(nullable: false),
-                    MunterRate = table.Column<double>(nullable: false),
-                    Time = table.Column<double>(nullable: false),
+                    TourName = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Legs", x => x.LegId);
-                    table.ForeignKey(
-                        name: "FK_Legs_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tours",
-                columns: table => new
-                {
-                    TourId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(nullable: false),
-                    LegId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
                     table.PrimaryKey("PK_Tours", x => x.TourId);
-                    table.ForeignKey(
-                        name: "FK_Tours_Legs_LegId",
-                        column: x => x.LegId,
-                        principalTable: "Legs",
-                        principalColumn: "LegId",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tours_Users_UserId",
                         column: x => x.UserId,
@@ -77,15 +48,48 @@ namespace MapProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Legs",
+                columns: table => new
+                {
+                    LegId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    LegNumber = table.Column<int>(nullable: false),
+                    Distance = table.Column<double>(nullable: false),
+                    Vertical = table.Column<double>(nullable: false),
+                    MunterRate = table.Column<double>(nullable: false),
+                    Time = table.Column<double>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
+                    TourId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Legs", x => x.LegId);
+                    table.ForeignKey(
+                        name: "FK_Legs_Tours_TourId",
+                        column: x => x.TourId,
+                        principalTable: "Tours",
+                        principalColumn: "TourId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Legs_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Legs_TourId",
+                table: "Legs",
+                column: "TourId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Legs_UserId",
                 table: "Legs",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tours_LegId",
-                table: "Tours",
-                column: "LegId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tours_UserId",
@@ -96,10 +100,10 @@ namespace MapProject.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tours");
+                name: "Legs");
 
             migrationBuilder.DropTable(
-                name: "Legs");
+                name: "Tours");
 
             migrationBuilder.DropTable(
                 name: "Users");

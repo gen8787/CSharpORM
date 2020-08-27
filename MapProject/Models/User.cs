@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MapProject.Models
 {
-    public class User
+        public class User
         {
 // Primary Key
         [Key]

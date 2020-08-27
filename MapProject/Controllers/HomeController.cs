@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using MapProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MapProject.Controllers
 {
@@ -100,14 +101,21 @@ namespace MapProject.Controllers
         [HttpGet("dashboard")]
         public IActionResult Dashboard()
         {
-            return View("Dashboard");
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index");
+            }
+            List<Tour> AllTours = db.Tours
+                .OrderBy(n => n.TourName)
+                .ToList();
+            return View("Dashboard", AllTours);
         }
     // Logout -> Clear Session
         [HttpGet("logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("SignIn");
+            return RedirectToAction("Index");
         }
 //<~~ E N D   O F   M A I N   V I E W S ~~> //
         public IActionResult Privacy()
