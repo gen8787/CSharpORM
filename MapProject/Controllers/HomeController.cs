@@ -106,9 +106,16 @@ namespace MapProject.Controllers
                 return RedirectToAction("Index");
             }
             List<Tour> AllTours = db.Tours
+                .Include(l => l.Legs)
                 .OrderBy(n => n.TourName)
                 .ToList();
             return View("Dashboard", AllTours);
+        }
+    // To Do Page -> Things To Do
+        [HttpGet("todo")]
+        public IActionResult ToDo()
+        {
+            return View("ToDo");
         }
     // Logout -> Clear Session
         [HttpGet("logout")]

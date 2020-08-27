@@ -25,7 +25,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Tour" asp-action="NewTour">New Tour</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">New Tour</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ToDo">To Do</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout @Context.Session.GetString("userFirstName")</a>

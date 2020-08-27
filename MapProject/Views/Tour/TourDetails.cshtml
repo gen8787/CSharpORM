@@ -1,0 +1,111 @@
+@{
+    ViewData["Title"] = "Tour Planner";
+}
+@model Tour
+
+<div class="container">
+    <h3 class="text-primary">Tour Planner - @Model.TourName</h3>
+    <div class="row border border-primary bg-light shadow-lg mb-5 rounded">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col-1">Leg</th>
+                    <th scope="col-2">Lat</th>
+                    <th scope="col-2">Lon</th>
+                    <th scope="col-2">Elev (Ft)</th>
+                    <th scope="col-1">Dist (Mi)</th>
+                    <th scope="col-1">Vert (Ft)</th>
+                    <th scope="col-1">Rate</th>
+                    <th scope="col-1"> Est. Time</th>
+                    <th scope="col-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Start</th>
+                    <td>Start Lat</td>
+                    <td>Start Lon</td>
+                    <td>Start Elev</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td></td>
+                </tr>
+                @{
+                int Leg1 = 1;
+                int Leg2 = 2;
+                }
+                @foreach (Leg l in ViewBag.RelLegs)
+                {
+                <tr>
+                    <td>@Leg1 &rarr; @Leg2</td>
+                    <td>Next Lat</td>
+                    <td>Next Lon</td>
+                    <td>Next Elev</td>
+                    <td>@Math.Round(l.Distance, 1)</td>
+                    <td>@Math.Round(l.Vertical, 0)</td>
+                    <td>@Math.Round(l.MunterRate, 1)</td>
+                    <td>@Math.Floor(l.Time) hr @Math.Round((l.Time - Math.Floor(l.Time)) * 60) min</td>
+                    <td><a class="text-danger" asp-action="DeleteLeg" asp-controller="Leg" asp-route-LegId="@l.LegId">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg></a>
+                    </td>
+                </tr>
+                    Leg1 += 1;
+                    Leg2 += 1;
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th colspan="1">Total Dist: </th>
+                    <th colspan="1">@Model.TotalDist() Miles</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th colspan="1">Total Vert: </th>
+                    <th colspan="1">@Model.TotalVert() Feet</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th colspan="1">Total Est. Time:</th>
+                    <th colspan="1">@Model.TotalEstHours() Hr @Model.TotalEstMins() Min</th>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+@{
+    Leg newLeg = new Leg();
+}
+<partial name="/Views/Leg/_AddLeg.cshtml" model="@newLeg" asp-route-TourId="@Model.TourId"/>
+
+<hr>
+
+<div id="mapid">
+    
+</div>

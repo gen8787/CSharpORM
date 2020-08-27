@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using MapProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MapProject.Controllers
 {
@@ -31,6 +34,25 @@ namespace MapProject.Controllers
             }
         }
 // v~~ M A I N   V I E W S ~~v //
+    // Tour Details Page -> View & Add Legs
+        [HttpGet("tour/{TourId}")]
+        public IActionResult TourDetails(int TourId)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Tour thisTour = db.Tours
+                .FirstOrDefault(t => t.TourId == TourId);
+
+            List<Leg> RelatedLegs = db.Legs
+                .Include(t => t.RelatedTour)
+                .Where(t => t.TourId == TourId)
+                .ToList();
+            ViewBag.RelLegs = RelatedLegs;
+
+            return View("TourDetails", thisTour);
+        }
     // Create Tour -> Add to Db
         [HttpPost("add-tour")]
         public IActionResult CreateTour(Tour newTour)
@@ -41,13 +63,13 @@ namespace MapProject.Controllers
 
                 db.Tours.Add(newTour);
                 db.SaveChanges();
-                return RedirectToAction("Dashboard", "Home"); 
+                return RedirectToAction("TourDetails", new { TourId = newTour.TourId }); 
             }
             return View("Dashboard", "Home");
         }
     // Delete Tour
-        [HttpGet("delete/{TourId}")]
-        public IActionResult Delete(int TourId)
+        [HttpGet("delete/tour/{TourId}")]
+        public IActionResult DeleteTour(int TourId)
         {
             Tour TourToDelete = db.Tours.FirstOrDefault(t => t.TourId == TourId);
             db.Tours.Remove(TourToDelete);
